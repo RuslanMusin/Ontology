@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://test.org/onto.owl"
+         xmlns="http://test.org/onto.owl#">
+
+<owl:Ontology rdf:about="http://test.org/onto.owl"/>
+
+<owl:Class rdf:about="#Student">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SubjectAssociation">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mark">
+  <rdfs:subClassOf rdf:resource="#SubjectAssociation"/>
+</owl:Class>
+
+<owl:Class rdf:about="#InterestPoint">
+  <rdfs:subClassOf rdf:resource="#SubjectAssociation"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Subject">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Theme">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#RequirementThing">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#EduStandart">
+  <rdfs:subClassOf rdf:resource="#RequirementThing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Market">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Job">
+  <rdfs:subClassOf rdf:resource="#RequirementThing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Requirement">
+  <rdfs:subClassOf rdf:resource="#SubjectAssociation"/>
+</owl:Class>
+
+<owl:DatatypeProperty rdf:about="#has_name">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:ObjectProperty rdf:about="#has_mark">
+  <rdfs:domain rdf:resource="#Student"/>
+  <rdfs:range rdf:resource="#Mark"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_interest_point">
+  <rdfs:domain rdf:resource="#Student"/>
+  <rdfs:range rdf:resource="#InterestPoint"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#depends_on">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Subject"/>
+  <rdfs:range rdf:resource="#Subject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_subject">
+  <rdfs:domain rdf:resource="#Student"/>
+  <rdfs:range rdf:resource="#Subject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#related_to_subject">
+  <rdfs:domain rdf:resource="#SubjectAssociation"/>
+  <rdfs:range rdf:resource="#Subject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#include_theme">
+  <rdfs:domain rdf:resource="#Subject"/>
+  <rdfs:range rdf:resource="#Theme"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_job">
+  <rdfs:domain rdf:resource="#Market"/>
+  <rdfs:range rdf:resource="#Job"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_requirement">
+  <rdfs:domain rdf:resource="#RequirementThing"/>
+  <rdfs:range rdf:resource="#Requirement"/>
+</owl:ObjectProperty>
+
+<Subject rdf:about="#DiscreteMath">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <include_theme rdf:resource="#Graph"/>
+  <include_theme rdf:resource="#BoolAlgebra"/>
+</Subject>
+
+<Subject rdf:about="#LinearAlgebra">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <include_theme rdf:resource="#ComplexNumb"/>
+  <include_theme rdf:resource="#Matrix"/>
+</Subject>
+
+<Subject rdf:about="#Algorithms">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <depends_on rdf:resource="#DiscreteMath"/>
+  <depends_on rdf:resource="#LinearAlgebra"/>
+  <include_theme rdf:resource="#Sorting"/>
+  <include_theme rdf:resource="#Trees"/>
+</Subject>
+
+<Subject rdf:about="#GameDeveloping">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <depends_on rdf:resource="#Algorithms"/>
+  <include_theme rdf:resource="#ShapingObjects"/>
+  <include_theme rdf:resource="#ObjectVelocity"/>
+</Subject>
+
+<Theme rdf:about="#Graph">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#BoolAlgebra">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#Matrix">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#ComplexNumb">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#Trees">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#Sorting">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#ObjectVelocity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Theme rdf:about="#ShapingObjects">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Theme>
+
+<Student rdf:about="#Ruslan">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_mark rdf:resource="#40"/>
+  <has_mark rdf:resource="#74"/>
+  <has_mark rdf:resource="#85"/>
+  <has_subject rdf:resource="#Algorithms"/>
+  <has_subject rdf:resource="#DiscreteMath"/>
+  <has_subject rdf:resource="#LinearAlgebra"/>
+</Student>
+
+<Mark rdf:about="#40">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <related_to_subject rdf:resource="#DiscreteMath"/>
+</Mark>
+
+<Mark rdf:about="#74">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <related_to_subject rdf:resource="#LinearAlgebra"/>
+</Mark>
+
+<Mark rdf:about="#85">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <related_to_subject rdf:resource="#Algorithms"/>
+</Mark>
+
+
+</rdf:RDF>
