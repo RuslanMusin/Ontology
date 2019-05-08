@@ -7,7 +7,10 @@ onto = get_ontology("http://test.org/onto.owl")
 
 with onto:
 
-    class Student(Thing):
+    class SubjectThing(Thing):
+        namespace = onto
+
+    class Student(SubjectThing):
         namespace = onto
 
 
@@ -35,7 +38,7 @@ with onto:
         namespace = onto
 
 
-    class EduStandart(RequirementThing):
+    class EduStandart(SubjectThing):
         namespace = onto
 
 
@@ -70,7 +73,7 @@ with onto:
 
 
     class has_subject(ObjectProperty):
-        domain = [Student]
+        domain = [SubjectThing]
         range = [Subject]
 
 
@@ -98,22 +101,6 @@ subject1 = Subject("DiscreteMath")
 subject2 = Subject("LinearAlgebra")
 subject3 = Subject("Algorithms", depends_on=[subject1, subject2])
 subject4 = Subject("GameDeveloping", depends_on=[subject3])
-
-themeMath1 = Theme("Graph")
-themeMath2 = Theme("BoolAlgebra")
-subject1.include_theme = [themeMath1, themeMath2]
-
-themeAlg1 = Theme("Matrix")
-themeAlg2 = Theme("ComplexNumb")
-subject2.include_theme = [themeAlg1, themeAlg2]
-
-themeAlgo1 = Theme("Trees")
-themeAlgo2 = Theme("Sorting")
-subject3.include_theme = [themeAlgo1, themeAlgo2]
-
-themeGame1 = Theme("ObjectVelocity")
-themeGame2 = Theme("ShapingObjects")
-subject4.include_theme = [themeGame1, themeGame2]
 
 student = Student("Ruslan")
 student.has_subject = [subject1, subject2, subject3]
